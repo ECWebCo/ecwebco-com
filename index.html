@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EC Web Co — Restaurant Websites That Convert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --ink: #0D0B08;
+    --stone: #1A1612;
+    --mist: #F5F0E8;
+    --warm: #FAF7F2;
+    --text: #2A2520;
+    --muted: #8A8078;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(13,11,8,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600; color: #fff; letter-spacing: 1px;
+  }
+
+  .nav-logo img { height: 36px; }
+
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+
+  .nav-links a {
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    padding: 10px 22px;
+    background: var(--gold); color: #fff;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 500; text-decoration: none; transition: 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content { position: relative; max-width: 780px; }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    color: #fff; margin-bottom: 12px;
+  }
+
+  .hero h1 em {
+    font-style: italic; color: var(--gold); font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,0.5);
+    line-height: 1.7; max-width: 480px;
+    font-weight: 300; margin-bottom: 48px; margin-top: 20px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--gold); color: #fff;
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; text-decoration: none; transition: 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 16px 36px;
+    border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7);
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; text-decoration: none; transition: 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 16px;
+    opacity: 0.6;
+  }
+
+  .hero-stat {
+    text-align: right;
+    border-right: 1px solid rgba(201,168,76,0.4);
+    padding-right: 20px;
+  }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--gold);
+  }
+
+  .hero-stat-label {
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden; padding: 14px 0;
+    background: rgba(201,168,76,0.04);
+  }
+
+  .marquee {
+    display: flex; gap: 60px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-item {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 24px;
+  }
+
+  .marquee-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* PRICING */
+  .pricing {
+    padding: 120px 60px;
+    background: var(--stone);
+    position: relative;
+  }
+
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300; line-height: 1.1;
+    color: #fff; margin-bottom: 64px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .pricing-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; max-width: 900px;
+  }
+
+  .pricing-card {
+    padding: 48px 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; transition: 0.3s;
+  }
+
+  .pricing-card:hover {
+    background: rgba(201,168,76,0.05);
+    border-color: rgba(201,168,76,0.2);
+  }
+
+  .pricing-card.featured {
+    background: rgba(201,168,76,0.08);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .pricing-tag {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); padding: 4px 10px;
+    border: 1px solid rgba(201,168,76,0.4);
+  }
+
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+
+  .pricing-price sup {
+    font-size: 24px; vertical-align: super;
+  }
+
+  .pricing-period {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    margin-top: 4px; margin-bottom: 24px;
+  }
+
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400; color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .pricing-desc {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    line-height: 1.6; margin-bottom: 32px;
+  }
+
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .pricing-features li {
+    font-size: 13px; color: rgba(255,255,255,0.6);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  .pricing-features li::before {
+    content: '✦'; color: var(--gold); font-size: 10px; margin-top: 2px; flex-shrink: 0;
+  }
+
+  /* WHAT WE DO */
+  .features {
+    padding: 120px 60px;
+    background: var(--ink);
+  }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; margin-top: 64px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .feature-card {
+    padding: 48px 36px;
+    background: var(--ink);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    transition: 0.3s;
+  }
+
+  .feature-card:last-child { border-right: none; }
+  .feature-card:hover { background: rgba(201,168,76,0.04); }
+
+  .feature-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 300;
+    color: rgba(201,168,76,0.12); line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400; color: #fff;
+    margin-bottom: 16px; margin-top: 8px;
+  }
+
+  .feature-desc {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* DASHBOARD SECTION */
+  .dashboard-section {
+    padding: 120px 60px;
+    background: var(--stone);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+
+  .dashboard-preview {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px; overflow: hidden;
+    aspect-ratio: 16/10;
+    display: flex; flex-direction: column;
+  }
+
+  .dash-bar {
+    background: rgba(201,168,76,0.1);
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .dash-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+
+  .dash-body {
+    flex: 1; display: grid; grid-template-columns: 180px 1fr;
+  }
+
+  .dash-sidebar {
+    background: rgba(0,0,0,0.3);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  .dash-nav-item {
+    padding: 8px 12px; border-radius: 4px;
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .dash-nav-item.active {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+  }
+
+  .dash-nav-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; flex-shrink: 0;
+  }
+
+  .dash-main {
+    padding: 20px; display: flex; flex-direction: column; gap: 12px;
+  }
+
+  .dash-stat-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  }
+
+  .dash-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 12px;
+    border-radius: 4px;
+  }
+
+  .dash-stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--gold);
+  }
+
+  .dash-stat-lbl {
+    font-size: 9px; color: rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .dash-chart {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px; flex: 1;
+    display: flex; align-items: flex-end;
+    padding: 12px; gap: 6px;
+  }
+
+  .dash-bar-item {
+    flex: 1; background: rgba(201,168,76,0.3);
+    border-radius: 2px 2px 0 0; min-height: 10px;
+    transition: 0.3s;
+  }
+
+  /* PORTFOLIO */
+  .portfolio {
+    padding: 120px 60px;
+    background: var(--ink);
+  }
+
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 64px;
+  }
+
+  .portfolio-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden; transition: 0.3s;
+    text-decoration: none; display: block;
+  }
+
+  .portfolio-card:hover { border-color: var(--gold); }
+
+  .portfolio-thumb {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(13,11,8,0.8));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; color: rgba(255,255,255,0.2);
+    font-style: italic;
+    position: relative; overflow: hidden;
+  }
+
+  .portfolio-thumb::after {
+    content: '↗';
+    position: absolute; top: 12px; right: 12px;
+    font-size: 14px; color: var(--gold);
+    opacity: 0; transition: 0.2s;
+    font-style: normal; font-family: 'DM Sans', sans-serif;
+  }
+
+  .portfolio-card:hover .portfolio-thumb::after { opacity: 1; }
+
+  .portfolio-info {
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .portfolio-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; color: #fff; margin-bottom: 4px;
+  }
+
+  .portfolio-type {
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 120px 60px;
+    background: var(--stone);
+  }
+
+  .how-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 64px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .how-step {
+    padding: 40px 32px 40px 0;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+  }
+
+  .how-step:last-child { border-right: none; padding-right: 0; }
+  .how-step:not(:first-child) { padding-left: 32px; }
+
+  .how-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; color: rgba(201,168,76,0.3);
+    line-height: 1; margin-bottom: 16px;
+  }
+
+  .how-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: #fff; margin-bottom: 12px;
+  }
+
+  .how-step-desc {
+    font-size: 13px; color: rgba(255,255,255,0.45);
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 140px 60px;
+    background: var(--ink);
+    text-align: center; position: relative; overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 300; line-height: 1.1;
+    color: #fff; margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-section h2 em { font-style: italic; color: var(--gold); }
+
+  .cta-section p {
+    font-size: 16px; color: rgba(255,255,255,0.45);
+    max-width: 480px; margin: 0 auto 48px;
+    line-height: 1.7; font-weight: 300;
+    position: relative;
+  }
+
+  .cta-actions { display: flex; gap: 16px; justify-content: center; position: relative; }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 60px;
+    background: var(--stone);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .footer-logo img { height: 24px; opacity: 0.5; }
+
+  .footer-copy {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+
+  .footer-link {
+    font-size: 12px; color: var(--gold); text-decoration: none;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-right { display: none; }
+    .hero h1 { font-size: 44px; }
+    .marquee-wrap { display: none; }
+    .pricing { padding: 80px 24px; }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .features { padding: 80px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .dashboard-section { padding: 80px 24px; grid-template-columns: 1fr; }
+    .portfolio { padding: 80px 24px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .how { padding: 80px 24px; }
+    .how-steps { grid-template-columns: 1fr; }
+    .how-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 32px 0; }
+    .cta-section { padding: 80px 24px; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://i.imgur.com/placeholder.png" alt="EC" onerror="this.style.display='none'" />
+    EC Web Co
+  </div>
+  <div class="nav-links">
+    <a href="#pricing">Pricing</a>
+    <a href="#features">What We Do</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#how">How It Works</a>
+  </div>
+  <a href="https://manage.ecwebco.com" class="nav-cta">Client Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Restaurant Websites</div>
+    <h1>
+      Websites that<br />
+      <em>get you booked.</em>
+    </h1>
+    <p class="hero-sub">
+      We build, host, and manage high-converting restaurant websites for $99/month. Online orders, reservations, phone calls — all tracked. You focus on the food.
+    </p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Get Started — $99/mo</a>
+      <a href="#portfolio" class="btn-ghost">See Our Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">$99</div>
+      <div class="hero-stat-label">Per Month</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Conversions Tracked</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">∞</div>
+      <div class="hero-stat-label">Change Requests</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item"><span class="marquee-dot"></span>Online Orders</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Table Reservations</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Phone Calls Tracked</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Analytics Dashboard</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Human Support</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Flat Monthly Rate</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Online Orders</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Table Reservations</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Phone Calls Tracked</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Analytics Dashboard</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Human Support</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Flat Monthly Rate</div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Simple, flat pricing.<br /><em>No surprises.</em></h2>
+  <div class="pricing-cards">
+    <div class="pricing-card featured">
+      <div class="pricing-tag">Most Popular</div>
+      <div class="pricing-price"><sup>$</sup>99</div>
+      <div class="pricing-period">per month, per domain</div>
+      <div class="pricing-name">Single Location</div>
+      <div class="pricing-desc">Everything you need for one restaurant website, fully managed.</div>
+      <ul class="pricing-features">
+        <li>Custom designed website</li>
+        <li>Hosted & maintained</li>
+        <li>Menu, hours & photos manager</li>
+        <li>Analytics dashboard</li>
+        <li>Order, reserve & call tracking</li>
+        <li>Unlimited change requests</li>
+        <li>Human support team</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-price"><sup>$</sup>50</div>
+      <div class="pricing-period">per additional domain</div>
+      <div class="pricing-name">Additional Locations</div>
+      <div class="pricing-desc">Have multiple banners or locations? Add each for just $50/month.</div>
+      <ul class="pricing-features">
+        <li>Same features as primary site</li>
+        <li>Separate domain & branding</li>
+        <li>Shared dashboard access</li>
+        <li>Independent analytics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="features" id="features">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">We handle everything.<br /><em>You run your restaurant.</em></h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-title">We Build It</div>
+      <div class="feature-desc">We design and build a custom, high-converting website tailored to your restaurant. Not a template — a site that looks and feels like you.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-title">We Host It</div>
+      <div class="feature-desc">No server headaches, no domain renewals to track. We handle all the infrastructure so your site is always fast, secure, and online.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-title">You Manage It</div>
+      <div class="feature-desc">Your dashboard lets you update your menu, hours, and photos instantly. Need a bigger change? Request it and we handle it — same day.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD DEMO -->
+<section class="dashboard-section" id="dashboard">
+  <div>
+    <div class="section-label">The Dashboard</div>
+    <h2 class="section-title" style="font-size: clamp(32px,4vw,52px)">Your website,<br /><em>in your hands.</em></h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300;margin-bottom:32px;max-width:400px;">
+      Update your menu, change your hours, swap photos — all from a clean, simple dashboard. No tech skills needed. And if you want something bigger changed, just request it.
+    </p>
+    <a href="https://manage.ecwebco.com" class="btn-primary">Access Dashboard</a>
+  </div>
+  <div class="dashboard-preview">
+    <div class="dash-bar">
+      <div class="dash-dot" style="background:#ff5f57"></div>
+      <div class="dash-dot" style="background:#febc2e"></div>
+      <div class="dash-dot" style="background:#28c840"></div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.3);margin-left:8px">manage.ecwebco.com</span>
+    </div>
+    <div class="dash-body">
+      <div class="dash-sidebar">
+        <div class="dash-nav-item active"><span class="dash-nav-dot"></span>Dashboard</div>
+        <div class="dash-nav-item"><span class="dash-nav-dot"></span>Menu</div>
+        <div class="dash-nav-item"><span class="dash-nav-dot"></span>Storefronts</div>
+        <div class="dash-nav-item"><span class="dash-nav-dot"></span>Photos</div>
+        <div class="dash-nav-item"><span class="dash-nav-dot"></span>Settings</div>
+      </div>
+      <div class="dash-main">
+        <div class="dash-stat-row">
+          <div class="dash-stat"><div class="dash-stat-val">247</div><div class="dash-stat-lbl">Visitors</div></div>
+          <div class="dash-stat"><div class="dash-stat-val">38</div><div class="dash-stat-lbl">Orders</div></div>
+          <div class="dash-stat"><div class="dash-stat-val">12</div><div class="dash-stat-lbl">Reservations</div></div>
+        </div>
+        <div class="dash-chart">
+          <div class="dash-bar-item" style="height:40%"></div>
+          <div class="dash-bar-item" style="height:65%"></div>
+          <div class="dash-bar-item" style="height:45%"></div>
+          <div class="dash-bar-item" style="height:80%"></div>
+          <div class="dash-bar-item" style="height:55%"></div>
+          <div class="dash-bar-item" style="height:90%"></div>
+          <div class="dash-bar-item" style="height:70%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Built for real<br /><em>restaurants.</em></h2>
+  <div class="portfolio-grid">
+    <a href="https://preview.ecwebco.com/west-african-restaurant" target="_blank" class="portfolio-card">
+      <div class="portfolio-thumb">West African Restaurant</div>
+      <div class="portfolio-info">
+        <div class="portfolio-name">West African Restaurant</div>
+        <div class="portfolio-type">Maywood, IL</div>
+      </div>
+    </a>
+    <a href="https://preview.ecwebco.com/ec-web-co" target="_blank" class="portfolio-card">
+      <div class="portfolio-thumb">EC Web Co Demo</div>
+      <div class="portfolio-info">
+        <div class="portfolio-name">EC Web Co Demo</div>
+        <div class="portfolio-type">Houston, TX</div>
+      </div>
+    </a>
+    <div class="portfolio-card" style="opacity:0.4;cursor:default">
+      <div class="portfolio-thumb" style="font-size:16px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)">Your Restaurant</div>
+      <div class="portfolio-info">
+        <div class="portfolio-name" style="color:rgba(255,255,255,0.3)">Coming Soon</div>
+        <div class="portfolio-type">Your City</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Up and running<br /><em>in days.</em></h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <div class="how-step-title">We Talk</div>
+      <div class="how-step-desc">Tell us about your restaurant — your vibe, your menu, your customers. We take it from there.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <div class="how-step-title">We Build</div>
+      <div class="how-step-desc">We design and build your site, add your menu and photos, and set up all your conversion buttons.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <div class="how-step-title">You Preview</div>
+      <div class="how-step-desc">You get a preview link to review everything before it goes live. Approve it or request changes.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">04</div>
+      <div class="how-step-title">You're Live</div>
+      <div class="how-step-desc">We point your domain, hand you dashboard access, and you're live. We're here whenever you need us.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to get<br /><em>more customers?</em></h2>
+  <p>Join restaurants using EC Web Co to drive more orders, reservations, and calls every month.</p>
+  <div class="cta-actions">
+    <a href="mailto:evan@ecwebco.com" class="btn-primary">Get Started Today</a>
+    <a href="https://manage.ecwebco.com" class="btn-ghost">Client Login</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EC Web Co</div>
+  <div class="footer-copy">© 2026 EC Web Co. All rights reserved.</div>
+  <a href="mailto:evan@ecwebco.com" class="footer-link">evan@ecwebco.com</a>
+</footer>
+
+</body>
+</html>
