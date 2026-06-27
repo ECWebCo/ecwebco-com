@@ -219,32 +219,7 @@
   }
   .hero-inner { position: relative; max-width: 1320px; margin: 0 auto; width: 100%; z-index: 3; }
 
-  /* ---------- QUIRKY BITS ---------- */
-  .shapes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-  .shape { position: absolute; will-change: transform; }
-  .shape svg { display: block; width: 100%; height: 100%; }
-  .shape.s1 { width: clamp(80px,9vw,130px); height: clamp(80px,9vw,130px); top: 22%; right: 13%; }
-  .shape.s2 { width: clamp(60px,7vw,96px); height: clamp(60px,7vw,96px); bottom: 24%; left: 7%; animation: spin 18s linear infinite; }
-  .shape.s3 { width: clamp(120px,16vw,210px); height: clamp(120px,16vw,210px); top: 16%; left: 38%; }
-  .shape.s4 { width: clamp(50px,6vw,80px); height: clamp(50px,6vw,80px); bottom: 30%; right: 28%; animation: spin 12s linear infinite reverse; }
-  @media (max-width: 760px){ .shape.s3, .shape.s4 { display: none; } }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* googly eye */
-  .eye {
-    position: relative; border-radius: 50%; flex-shrink: 0;
-    background: radial-gradient(circle at 50% 36%, #fff 0%, #F3E7D2 76%, #E0CBA8 100%);
-    box-shadow: inset 0 -10px 26px rgba(120,72,30,.30), 0 16px 44px -16px rgba(0,0,0,.65);
-  }
-  .eye .iris {
-    position: absolute; left: 50%; top: 50%; width: 46%; height: 46%; border-radius: 50%;
-    transform: translate(-50%,-50%); will-change: transform;
-    background:
-      radial-gradient(circle at 36% 32%, rgba(255,255,255,.95) 0 9%, transparent 10%),
-      radial-gradient(circle at 50% 50%, #18110a 0 30%, var(--amber) 31% 56%, #aa641c 57% 100%);
-  }
-  .eye.ring::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 3px dashed rgba(251,77,43,.55); }
-
+  /* ---------- INTERACTIVE SHOWCASE ---------- */
   /* live code terminal (hero) */
   .term {
     position: absolute; top: 13%; right: 5%; z-index: 3; width: clamp(300px, 30vw, 384px);
@@ -286,19 +261,14 @@
   @keyframes discoGlint { 0%,100% { opacity: .25; } 50% { opacity: .85; } }
   @media (max-width: 760px){ .disco { display: none; } }
 
-  /* sticker badge */
-  .sticker {
-    display: grid; place-items: center; text-align: center;
-    width: 116px; height: 116px; border-radius: 50%;
-    background: var(--amber); color: #2a1b0a;
-    font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 12.5px;
-    text-transform: lowercase; line-height: 1.18; letter-spacing: -0.01em; padding: 14px;
-    box-shadow: 0 18px 44px -18px rgba(0,0,0,.6);
+  /* cursor spotlight (cta) */
+  .cta-glow {
+    position: absolute; width: 540px; height: 540px; border-radius: 50%; left: 0; top: 0;
+    z-index: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle, rgba(251,77,43,0.20) 0%, rgba(244,169,60,0.09) 40%, transparent 70%);
+    transition: opacity .45s ease;
   }
-  .sticker b { display: block; font-size: 16px; }
-  .sec-sticker { position: absolute; top: 52px; right: 5vw; z-index: 5; width: 104px; height: 104px; font-size: 11.5px; transform: rotate(9deg); animation: bob 5s ease-in-out infinite; }
-  @keyframes bob { 0%,100%{ transform: rotate(9deg) translateY(0);} 50%{ transform: rotate(5deg) translateY(-10px);} }
-  @media (max-width: 920px){ .sec-sticker { display: none; } }
+  .endcta:hover .cta-glow { opacity: 1; }
 
   .hero-tag {
     display: inline-flex; align-items: center; gap: 10px;
@@ -380,7 +350,7 @@
     text-decoration: none; color: var(--white); transition: .28s;
   }
   .work-card { transition: .28s cubic-bezier(.34,1.56,.64,1); }
-  .work-card:hover { border-color: var(--red); transform: translateY(-8px) rotate(-1.2deg); }
+  .work-card:hover { border-color: var(--red); transform: translateY(-8px); }
 
   .peek { border-radius: 11px; overflow: hidden; border: 1px solid var(--line-soft); background: #1A140E; margin-bottom: 18px; }
   .peek-bar { display: flex; align-items: center; gap: 5px; padding: 9px 13px; background: #2A2118; border-bottom: 1px solid var(--line-soft); }
@@ -479,7 +449,6 @@
 
   /* ---------- BIG CTA / FOOTER ---------- */
   .endcta { text-align: center; padding-bottom: clamp(40px,6vw,90px); position: relative; overflow: hidden; }
-  .cta-eye { position: absolute; left: 50%; top: 54%; transform: translate(-50%,-50%); z-index: 1; width: clamp(140px, 24vw, 320px); height: clamp(140px, 24vw, 320px); }
   .endcta .label { position: relative; z-index: 2; font-size: 15px; color: var(--red); text-transform: lowercase; font-weight: 600; margin-bottom: 24px; }
   .endcta h2 { position: relative; z-index: 2; font-size: clamp(48px, 11vw, 170px); text-transform: lowercase; line-height: 0.92; }
   .endcta h2 a { color: var(--white); text-decoration: none; transition: color .2s; }
@@ -541,13 +510,7 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="shapes" aria-hidden="true">
-    <div class="shape s1" data-parallax="42" data-rot="0"><svg viewBox="0 0 100 100"><path fill="var(--red)" d="M50 4c19 0 42 9 45 31s-10 34-23 45-35 19-48 6S5 53 11 33 31 4 50 4Z"/></svg></div>
-    <div class="shape s2" data-parallax="-34" data-rot="0"><svg viewBox="0 0 100 100"><path fill="var(--amber)" d="M50 5c3 23 22 42 45 45-23 3-42 22-45 45-3-23-22-42-45-45 23-3 42-22 45-45Z"/></svg></div>
-    <div class="shape s3" data-parallax="20" data-rot="0"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="var(--white)" stroke-width="3" stroke-opacity="0.22"/></svg></div>
-    <div class="shape s4" data-parallax="-54" data-rot="0"><svg viewBox="0 0 100 100"><path fill="var(--amber)" d="M42 10h16v32h32v16H58v32H42V58H10V42h32z"/></svg></div>
-  </div>
-  <div class="term" data-parallax="14" data-rot="1.6" aria-hidden="true">
+  <div class="term" aria-hidden="true">
     <div class="term-bar"><i></i><i></i><i></i><em>ec ~ build.js</em></div>
     <pre class="term-body"><code id="termCode"></code><span class="term-cursor">▋</span></pre>
   </div>
@@ -671,7 +634,6 @@
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="sticker sec-sticker" aria-hidden="true">made in<b>texas</b>since '26</div>
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">what we do</div>
@@ -835,7 +797,7 @@
 
 <!-- BIG CTA -->
 <section class="endcta">
-  <div class="cta-eye eye ring" aria-hidden="true"><div class="iris"></div></div>
+  <div class="cta-glow" aria-hidden="true"></div>
   <div class="label">got something to build?</div>
   <h2><a href="#contact">let's create<br />something <span class="red">good.</span></a></h2>
 </section>
@@ -866,37 +828,21 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ---------- Quirky interactions (googly eyes, parallax, magnetic buttons) ----------
+  // ---------- Subtle interactions (cursor spotlight + magnetic buttons) ----------
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
   if (!reduceMotion && finePointer) {
-    const eyes = Array.from(document.querySelectorAll('.eye'));
-    const parallax = Array.from(document.querySelectorAll('[data-parallax]'));
-    let raf = null, mx = 0, my = 0;
-
-    const apply = () => {
-      raf = null;
-      eyes.forEach((eye) => {
-        const iris = eye.querySelector('.iris');
-        if (!iris) return;
-        const r = eye.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
-        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        const ang = Math.atan2(my - cy, mx - cx);
-        const reach = Math.min(r.width * 0.16, Math.hypot(mx - cx, my - cy) / 9);
-        iris.style.transform = `translate(calc(-50% + ${Math.cos(ang) * reach}px), calc(-50% + ${Math.sin(ang) * reach}px))`;
+    // Warm spotlight follows the cursor across the closing CTA
+    const endcta = document.querySelector('.endcta');
+    const glow = document.querySelector('.cta-glow');
+    if (endcta && glow) {
+      const centerGlow = () => { const r = endcta.getBoundingClientRect(); glow.style.transform = `translate(${r.width / 2 - 270}px, ${r.height / 2 - 270}px)`; };
+      centerGlow();
+      endcta.addEventListener('mousemove', (e) => {
+        const r = endcta.getBoundingClientRect();
+        glow.style.transform = `translate(${e.clientX - r.left - 270}px, ${e.clientY - r.top - 270}px)`;
       });
-      const dx = mx / window.innerWidth - 0.5, dy = my / window.innerHeight - 0.5;
-      parallax.forEach((s) => {
-        const sp = parseFloat(s.dataset.parallax) || 20;
-        const rot = parseFloat(s.dataset.rot) || 0;
-        s.style.transform = `translate(${dx * sp}px, ${dy * sp}px) rotate(${rot}deg)`;
-      });
-    };
-    window.addEventListener('mousemove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      if (!raf) raf = requestAnimationFrame(apply);
-    }, { passive: true });
+    }
 
     // Magnetic primary buttons
     document.querySelectorAll('.btn-red, .btn-white').forEach((btn) => {
