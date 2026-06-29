@@ -224,7 +224,7 @@
   .term {
     position: absolute; top: 13%; right: 5%; z-index: 3; width: clamp(300px, 30vw, 384px);
     background: #1B150F; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-    box-shadow: 0 36px 80px -34px rgba(0,0,0,.75); transform: rotate(1.6deg);
+    box-shadow: 0 36px 80px -34px rgba(0,0,0,.75);
     font-family: 'SF Mono', ui-monospace, 'Menlo', 'Consolas', monospace;
   }
   .term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #241C15; border-bottom: 1px solid var(--line-soft); }
@@ -237,29 +237,6 @@
   .term-cursor { display: inline-block; width: 7px; margin-left: 1px; color: var(--red); animation: blink 1.05s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
   @media (max-width: 980px){ .term { display: none; } }
-
-  /* disco ball (work section) */
-  .disco { position: absolute; top: 30px; right: 5vw; z-index: 5; width: 66px; height: 66px; }
-  .disco::before { content: ''; position: absolute; left: 50%; top: -15px; width: 2px; height: 15px; background: var(--line); transform: translateX(-50%); }
-  .disco-ball {
-    width: 100%; height: 100%; border-radius: 50%;
-    background-color: #9aa6bd;
-    background-image:
-      radial-gradient(circle at 33% 27%, rgba(255,255,255,.95) 0 11%, transparent 36%),
-      repeating-linear-gradient(45deg, rgba(255,255,255,.20) 0 5px, rgba(0,0,0,.16) 5px 10px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,.12) 0 5px, rgba(0,0,0,.18) 5px 10px),
-      radial-gradient(circle at 50% 50%, #c6cfdd, #58606e);
-    box-shadow: 0 0 28px rgba(170,190,255,.32), inset -7px -7px 16px rgba(0,0,0,.45);
-    animation: discoSpin 7s linear infinite;
-  }
-  .disco-ball::after {
-    content: ''; position: absolute; inset: 0; border-radius: 50%;
-    box-shadow: -20px 8px 0 -7px var(--red), 22px 16px 0 -7px var(--amber), 4px 24px 0 -8px #5fc6d8;
-    animation: discoGlint 3.2s ease-in-out infinite;
-  }
-  @keyframes discoSpin { to { transform: rotate(360deg); } }
-  @keyframes discoGlint { 0%,100% { opacity: .25; } 50% { opacity: .85; } }
-  @media (max-width: 760px){ .disco { display: none; } }
 
   /* cursor spotlight (cta) */
   .cta-glow {
@@ -551,18 +528,17 @@
     <div class="label">the short.</div>
     <div>
       <p class="tagline">we love building websites that <span class="red">actually work.</span></p>
-      <p class="text">Offering a kick-ass combo of design, development, SEO, and hosting. Built for small businesses, we turn good ideas into sites that <b>get found and get results</b> &mdash; designed, hosted, and run for you.</p>
+      <p class="text">A full-service mix of design, development, SEO, and hosting. Built for small businesses, we turn good ideas into sites that <b>get found and get results</b> &mdash; designed, hosted, and run for you.</p>
     </div>
   </div>
 </section>
 
 <!-- WORK -->
 <section class="work" id="work">
-  <div class="disco" aria-hidden="true"><div class="disco-ball"></div></div>
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">selected work</div>
-      <h2 class="sec-title">stuff we've <span class="red">shipped.</span></h2>
+      <h2 class="sec-title">work we've <span class="red">shipped.</span></h2>
     </div>
 
     <div class="work-grid">
@@ -863,7 +839,7 @@
       {t:'  '},{t:'design',c:'tk-prop'},{t:': ',c:'tk-op'},{t:"'custom'",c:'tk-str'},{t:',',c:'tk-op'},{nl:1},
       {t:'  '},{t:'seo',c:'tk-prop'},{t:': ',c:'tk-op'},{t:'true',c:'tk-kw'},{t:', ',c:'tk-op'},{t:'hosting',c:'tk-prop'},{t:': ',c:'tk-op'},{t:'true',c:'tk-kw'},{t:',',c:'tk-op'},{nl:1},
       {t:'})',c:'tk-op'},{nl:1},
-      {t:'site'},{t:'.',c:'tk-op'},{t:'ship',c:'tk-fn'},{t:'()',c:'tk-op'},{t:'  // live in days ✦',c:'tk-com'}
+      {t:'site'},{t:'.',c:'tk-op'},{t:'ship',c:'tk-fn'},{t:'()',c:'tk-op'},{t:'  // live in days',c:'tk-com'}
     ];
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) {
