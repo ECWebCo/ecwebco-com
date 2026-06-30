@@ -312,13 +312,16 @@
   .peek-body { aspect-ratio: 16/10; position: relative; overflow: hidden; background: #1A140E; }
   .peek-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #1A140E; }
 
-  .work-info { padding: 0 8px; }
-  .work-num { font-size: 12px; font-weight: 600; color: var(--red); text-transform: lowercase; margin-bottom: 10px; }
-  .work-name {
-    font-family: 'Wix Madefor Display', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; text-transform: lowercase;
-    margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  .logo-stage {
+    display: grid; place-items: center; aspect-ratio: 16 / 10; margin-bottom: 18px;
+    background: rgba(247,237,222,0.04); border: 1px solid var(--line-soft); border-radius: 12px; padding: 24px;
   }
-  .work-name .go { font-size: 15px; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .22s; flex-shrink: 0; }
+  .brand-logo { max-height: 64px; max-width: 80%; width: auto; object-fit: contain; transition: transform .28s ease; }
+  .work-card:hover .brand-logo { transform: scale(1.04); }
+  .work-info { padding: 0 8px; }
+  .work-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .work-num { font-size: 12px; font-weight: 600; color: var(--red); text-transform: lowercase; }
+  .go { font-size: 15px; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .22s; flex-shrink: 0; }
   .work-card:hover .go { background: var(--red); border-color: var(--red); color: #fff; transform: rotate(45deg); }
   .work-desc { font-size: 14.5px; color: var(--gray); margin-bottom: 14px; }
   .work-tags { display: flex; gap: 7px; flex-wrap: wrap; }
@@ -519,18 +522,9 @@
 
     <div class="work-grid">
       <a href="https://www.tixplorer.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar">
-            <span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span>
-            <span class="peek-url">tixplorer.com</span>
-          </div>
-          <div class="peek-body">
-            <img class="peek-img" src="https://snthchxrqjtriorgvakk.supabase.co/storage/v1/object/public/restaurant-photos/078cdf1d-8a9f-47e0-9289-8bc713de81b4/collage_1-1781575823615-0-Screenshot-2026-06-15-211008.png" alt="Tixplorer homepage" loading="lazy" />
-          </div>
-        </div>
+        <div class="logo-stage"><img class="brand-logo" src="assets/brand-tixplorer.png" alt="Tixplorer logo" loading="lazy" /></div>
         <div class="work-info">
-          <div class="work-num">web platform</div>
-          <div class="work-name">tixplorer <span class="go">↗</span></div>
+          <div class="work-top"><span class="work-num">web platform</span><span class="go">↗</span></div>
           <p class="work-desc">A ticket-comparison engine searching every major marketplace at once, with all-in pricing and trending events.</p>
           <div class="work-tags">
             <span class="work-tag">web app</span>
@@ -540,18 +534,9 @@
       </a>
 
       <a href="https://www.ld-roofing.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar">
-            <span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span>
-            <span class="peek-url">ld-roofing.com</span>
-          </div>
-          <div class="peek-body">
-            <img class="peek-img" src="https://snthchxrqjtriorgvakk.supabase.co/storage/v1/object/public/restaurant-photos/078cdf1d-8a9f-47e0-9289-8bc713de81b4/collage_1-1781575726155-0-Screenshot-2026-06-15-210812.png" alt="LD Roofing and Exteriors homepage" loading="lazy" />
-          </div>
-        </div>
+        <div class="logo-stage"><img class="brand-logo" src="assets/brand-ld-roofing.png" alt="LD Roofing & Exteriors logo" loading="lazy" /></div>
         <div class="work-info">
-          <div class="work-num">local business</div>
-          <div class="work-name">ld roofing <span class="go">↗</span></div>
+          <div class="work-top"><span class="work-num">local business</span><span class="go">↗</span></div>
           <p class="work-desc">A lead-generating site for a BBB A+ rated contractor in Houston and Dallas, built to turn searches into inspection calls.</p>
           <div class="work-tags">
             <span class="work-tag">lead gen</span>
@@ -561,18 +546,9 @@
       </a>
 
       <a href="https://www.kps-kitchen.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar">
-            <span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span>
-            <span class="peek-url">kps-kitchen.com</span>
-          </div>
-          <div class="peek-body">
-            <img class="peek-img" src="https://snthchxrqjtriorgvakk.supabase.co/storage/v1/object/public/restaurant-photos/078cdf1d-8a9f-47e0-9289-8bc713de81b4/collage_2-1781575883896-0-Screenshot-2026-06-15-211112.png" alt="KP's Kitchen homepage" loading="lazy" />
-          </div>
-        </div>
+        <div class="logo-stage"><img class="brand-logo" src="assets/brand-kps-kitchen.png" alt="KP's Kitchen logo" loading="lazy" /></div>
         <div class="work-info">
-          <div class="work-num">restaurant</div>
-          <div class="work-name">kp's kitchen <span class="go">↗</span></div>
+          <div class="work-top"><span class="work-num">restaurant</span><span class="go">↗</span></div>
           <p class="work-desc">A warm, appetite-first site for a Spring Valley restaurant, with menus, hours, and reservations a tap away.</p>
           <div class="work-tags">
             <span class="work-tag">restaurant</span>
