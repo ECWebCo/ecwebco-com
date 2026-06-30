@@ -437,8 +437,6 @@
     .form-row { grid-template-columns: 1fr; }
     .hero-foot { flex-direction: column; align-items: flex-start; }
     footer { flex-direction: column; align-items: flex-start; }
-    .hero-video { display: none; }
-    .hero { background: #15100C url('assets/hero-poster.jpg') center/cover no-repeat; }
   }
   @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
@@ -465,7 +463,7 @@
 
 <!-- HERO -->
 <header class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
     <source src="assets/hero.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
@@ -770,6 +768,17 @@
 </footer>
 
 <script>
+  // Hero video: force muted autoplay (some mobile browsers ignore the attribute)
+  (function () {
+    const v = document.querySelector('.hero-video');
+    if (!v) return;
+    v.muted = true; v.defaultMuted = true; v.setAttribute('muted', '');
+    const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    tryPlay();
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
+    ['touchstart', 'click'].forEach((ev) => window.addEventListener(ev, tryPlay, { once: true, passive: true }));
+  })();
+
   // Nav background on scroll
   const navEl = document.getElementById('nav');
   const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 24);
