@@ -297,13 +297,13 @@
   /* ---------- WORK ---------- */
   .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .work-card {
-    display: flex; flex-direction: column;
+    display: flex; gap: 20px; align-items: flex-start;
     background: var(--surface); border: 1px solid var(--line-soft);
-    border-radius: var(--radius); padding: 16px 16px 24px;
-    text-decoration: none; color: var(--white); transition: .28s;
+    border-radius: var(--radius); padding: 24px;
+    text-decoration: none; color: var(--white);
+    transition: .28s cubic-bezier(.34,1.56,.64,1);
   }
-  .work-card { transition: .28s cubic-bezier(.34,1.56,.64,1); }
-  .work-card:hover { border-color: var(--red); transform: translateY(-8px); }
+  .work-card:hover { border-color: var(--red); transform: translateY(-6px); }
 
   .peek { border-radius: 11px; overflow: hidden; border: 1px solid var(--line-soft); background: #1A140E; margin-bottom: 18px; }
   .peek-bar { display: flex; align-items: center; gap: 5px; padding: 9px 13px; background: #2A2118; border-bottom: 1px solid var(--line-soft); }
@@ -312,13 +312,8 @@
   .peek-body { aspect-ratio: 16/10; position: relative; overflow: hidden; background: #1A140E; }
   .peek-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #1A140E; }
 
-  .logo-stage {
-    display: grid; place-items: center; aspect-ratio: 16 / 10; margin-bottom: 18px;
-    background: rgba(247,237,222,0.04); border: 1px solid var(--line-soft); border-radius: 12px; padding: 24px;
-  }
-  .brand-logo { max-height: 64px; max-width: 80%; width: auto; object-fit: contain; transition: transform .28s ease; }
-  .work-card:hover .brand-logo { transform: scale(1.04); }
-  .work-info { padding: 0 8px; }
+  .brand-logo { height: 30px; width: auto; max-width: 150px; flex: 0 0 auto; object-fit: contain; object-position: left center; margin-top: 1px; }
+  .work-info { flex: 1; min-width: 0; }
   .work-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
   .work-num { font-size: 12px; font-weight: 600; color: var(--red); text-transform: lowercase; }
   .go { font-size: 15px; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .22s; flex-shrink: 0; }
@@ -522,7 +517,7 @@
 
     <div class="work-grid">
       <a href="https://www.tixplorer.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="logo-stage"><img class="brand-logo" src="assets/brand-tixplorer.png" alt="Tixplorer logo" loading="lazy" /></div>
+        <img class="brand-logo" src="assets/brand-tixplorer.png" alt="Tixplorer logo" loading="lazy" />
         <div class="work-info">
           <div class="work-top"><span class="work-num">web platform</span><span class="go">↗</span></div>
           <p class="work-desc">A ticket-comparison engine searching every major marketplace at once, with all-in pricing and trending events.</p>
@@ -534,7 +529,7 @@
       </a>
 
       <a href="https://www.ld-roofing.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="logo-stage"><img class="brand-logo" src="assets/brand-ld-roofing.png" alt="LD Roofing & Exteriors logo" loading="lazy" /></div>
+        <img class="brand-logo" src="assets/brand-ld-roofing.png" alt="LD Roofing & Exteriors logo" loading="lazy" />
         <div class="work-info">
           <div class="work-top"><span class="work-num">local business</span><span class="go">↗</span></div>
           <p class="work-desc">A lead-generating site for a BBB A+ rated contractor in Houston and Dallas, built to turn searches into inspection calls.</p>
@@ -546,7 +541,7 @@
       </a>
 
       <a href="https://www.kps-kitchen.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="logo-stage"><img class="brand-logo" src="assets/brand-kps-kitchen.png" alt="KP's Kitchen logo" loading="lazy" /></div>
+        <img class="brand-logo" src="assets/brand-kps-kitchen.png" alt="KP's Kitchen logo" loading="lazy" />
         <div class="work-info">
           <div class="work-top"><span class="work-num">restaurant</span><span class="go">↗</span></div>
           <p class="work-desc">A warm, appetite-first site for a Spring Valley restaurant, with menus, hours, and reservations a tap away.</p>
