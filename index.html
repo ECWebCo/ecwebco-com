@@ -207,36 +207,14 @@
     padding: 140px clamp(20px, 4vw, 56px) 56px;
     position: relative; overflow: hidden;
   }
-  .hero::before {
-    content: ''; position: absolute; width: 760px; height: 760px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(251,77,43,0.32) 0%, transparent 66%);
-    top: -260px; right: -170px; filter: blur(30px); pointer-events: none; z-index: 0;
-  }
-  .hero::after {
-    content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(244,169,60,0.22) 0%, transparent 68%);
-    bottom: -260px; left: -160px; filter: blur(30px); pointer-events: none; z-index: 0;
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(21,16,12,0.55) 0%, rgba(21,16,12,0.40) 38%, rgba(21,16,12,0.92) 100%),
+      linear-gradient(90deg, rgba(21,16,12,0.88) 0%, rgba(21,16,12,0.45) 55%, rgba(21,16,12,0.12) 100%);
   }
   .hero-inner { position: relative; max-width: 1320px; margin: 0 auto; width: 100%; z-index: 3; }
-
-  /* ---------- INTERACTIVE SHOWCASE ---------- */
-  /* live code terminal (hero) */
-  .term {
-    position: absolute; top: 13%; right: 5%; z-index: 3; width: clamp(300px, 30vw, 384px);
-    background: #1B150F; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-    box-shadow: 0 36px 80px -34px rgba(0,0,0,.75);
-    font-family: 'SF Mono', ui-monospace, 'Menlo', 'Consolas', monospace;
-  }
-  .term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #241C15; border-bottom: 1px solid var(--line-soft); }
-  .term-bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
-  .term-bar i:nth-child(1){ background:#ff5f57; } .term-bar i:nth-child(2){ background:#febc2e; } .term-bar i:nth-child(3){ background:#28c840; }
-  .term-bar em { margin-left: 8px; font-style: normal; font-size: 11px; color: var(--gray-soft); }
-  .term-body { margin: 0; padding: 16px 16px 20px; font-size: 13px; line-height: 1.75; color: var(--white); white-space: pre-wrap; min-height: 156px; }
-  .tk-kw { color: var(--red); } .tk-fn { color: #ffe3b0; font-weight: 600; } .tk-str { color: var(--amber); }
-  .tk-prop { color: #d9c7ad; } .tk-op { color: var(--gray-soft); } .tk-com { color: var(--gray-soft); font-style: italic; }
-  .term-cursor { display: inline-block; width: 7px; margin-left: 1px; color: var(--red); animation: blink 1.05s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (max-width: 980px){ .term { display: none; } }
 
   /* cursor spotlight (cta) */
   .cta-glow {
@@ -459,6 +437,8 @@
     .form-row { grid-template-columns: 1fr; }
     .hero-foot { flex-direction: column; align-items: flex-start; }
     footer { flex-direction: column; align-items: flex-start; }
+    .hero-video { display: none; }
+    .hero { background: #15100C url('assets/hero-poster.jpg') center/cover no-repeat; }
   }
   @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
@@ -485,10 +465,10 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="term" aria-hidden="true">
-    <div class="term-bar"><i></i><i></i><i></i><em>ec ~ build.js</em></div>
-    <pre class="term-body"><code id="termCode"></code><span class="term-cursor">▋</span></pre>
-  </div>
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-tag">a web studio for small business.</div>
     <h1>we are EC Web Co<span class="red">.</span></h1>
@@ -827,38 +807,6 @@
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
   }
-
-  // Live code terminal typewriter
-  (function () {
-    const code = document.getElementById('termCode');
-    if (!code) return;
-    const tokens = [
-      {t:'const ',c:'tk-kw'},{t:'site'},{t:' = ',c:'tk-op'},{t:'ec',c:'tk-fn'},{t:'.',c:'tk-op'},{t:'build',c:'tk-fn'},{t:'({',c:'tk-op'},{nl:1},
-      {t:'  '},{t:'design',c:'tk-prop'},{t:': ',c:'tk-op'},{t:"'custom'",c:'tk-str'},{t:',',c:'tk-op'},{nl:1},
-      {t:'  '},{t:'seo',c:'tk-prop'},{t:': ',c:'tk-op'},{t:'true',c:'tk-kw'},{t:', ',c:'tk-op'},{t:'hosting',c:'tk-prop'},{t:': ',c:'tk-op'},{t:'true',c:'tk-kw'},{t:',',c:'tk-op'},{nl:1},
-      {t:'})',c:'tk-op'},{nl:1},
-      {t:'site'},{t:'.',c:'tk-op'},{t:'ship',c:'tk-fn'},{t:'()',c:'tk-op'},{t:'  // live in days',c:'tk-com'}
-    ];
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      tokens.forEach(tok => {
-        if (tok.nl) { code.appendChild(document.createElement('br')); return; }
-        const s = document.createElement('span'); if (tok.c) s.className = tok.c; s.textContent = tok.t; code.appendChild(s);
-      });
-      return;
-    }
-    let ti = 0, ci = 0, cur = null;
-    function step() {
-      if (ti >= tokens.length) { setTimeout(() => { code.innerHTML = ''; ti = 0; ci = 0; cur = null; step(); }, 2800); return; }
-      const tok = tokens[ti];
-      if (tok.nl) { code.appendChild(document.createElement('br')); ti++; cur = null; setTimeout(step, 70); return; }
-      if (!cur) { cur = document.createElement('span'); if (tok.c) cur.className = tok.c; code.appendChild(cur); }
-      cur.textContent += tok.t[ci++];
-      if (ci >= tok.t.length) { ti++; ci = 0; cur = null; }
-      setTimeout(step, 32);
-    }
-    step();
-  })();
 
   // Contact form -> Supabase (insert-only table). Mailto fallback on failure.
   const SB_URL = 'https://snthchxrqjtriorgvakk.supabase.co';
