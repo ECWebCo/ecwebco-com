@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy | EC Web Co</title>
+<meta name="description" content="How EC Web Co collects, uses, and protects your information." />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#15100C" />
+<link rel="canonical" href="https://www.ecwebco.com/privacy" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&family=Wix+Madefor+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #15100C;
+    --bg-2: #1E1710;
+    --surface: #251D15;
+    --white: #F7EDDE;
+    --gray: #B3A595;
+    --gray-soft: #80715F;
+    --red: #FB4D2B;
+    --amber: #F4A93C;
+    --line: rgba(247,237,222,0.15);
+    --line-soft: rgba(247,237,222,0.08);
+  }
+
+  ::selection { background: var(--red); color: #fff; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Wix Madefor Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--white);
+    overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Wix Madefor Display', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+  a { color: inherit; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px clamp(20px, 4vw, 56px);
+    transition: background .3s, padding .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled { background: rgba(21,16,12,0.82); backdrop-filter: blur(16px); border-color: var(--line-soft); padding-top: 14px; padding-bottom: 14px; }
+  .nav-logo { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.04em; display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); }
+  .logo-mark-svg { height: 26px; width: auto; display: block; flex-shrink: 0; color: var(--white); }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { font-size: 15px; font-weight: 500; text-transform: lowercase; color: var(--white); text-decoration: none; position: relative; opacity: .82; transition: opacity .2s; }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0; background: var(--red); transition: width .25s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a:hover::after { width: 100%; }
+  .btn { display: inline-flex; align-items: center; gap: 9px; font-family: 'Wix Madefor Text', sans-serif; font-size: 15px; font-weight: 600; padding: 12px 22px; border-radius: 100px; text-decoration: none; transition: .22s ease; border: 1.5px solid transparent; cursor: pointer; white-space: nowrap; }
+  .btn-outline { border-color: var(--line); color: var(--white); background: transparent; }
+  .btn-outline:hover { border-color: var(--white); background: var(--white); color: var(--bg); }
+
+  /* ---------- LEGAL ---------- */
+  .legal-header { padding: 150px clamp(20px,5vw,56px) 44px; position: relative; overflow: hidden; }
+  .legal-header::before { content: ''; position: absolute; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(251,77,43,0.22) 0%, transparent 66%); top: -280px; right: -160px; filter: blur(30px); pointer-events: none; }
+  .legal-wrap { max-width: 820px; margin: 0 auto; position: relative; }
+  .legal-kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; text-transform: lowercase; color: var(--red); margin-bottom: 20px; }
+  .legal-kicker::before { content: ''; width: 26px; height: 2px; background: var(--red); }
+  .legal-header h1 { font-size: clamp(40px, 7vw, 78px); text-transform: lowercase; }
+  .legal-updated { margin-top: 20px; color: var(--gray); font-size: 15px; }
+
+  .legal-body { max-width: 820px; margin: 0 auto; padding: 24px clamp(20px,5vw,56px) 96px; border-top: 1px solid var(--line); }
+  .legal-body .intro { color: var(--white); font-size: 18px; margin: 40px 0 8px; }
+  .legal-body h2 { font-size: clamp(21px, 2.4vw, 28px); text-transform: lowercase; margin: 46px 0 14px; }
+  .legal-body p { color: var(--gray); font-size: 16.5px; margin-bottom: 16px; }
+  .legal-body ul { list-style: none; margin: 0 0 18px; padding: 0; }
+  .legal-body li { color: var(--gray); font-size: 16.5px; margin-bottom: 10px; padding-left: 22px; position: relative; }
+  .legal-body li::before { content: ''; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  .legal-body strong { color: var(--white); font-weight: 600; }
+  .legal-body a { color: var(--red); text-decoration: none; }
+  .legal-body a:hover { text-decoration: underline; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--line); padding: 36px clamp(20px,4vw,56px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .foot-logo { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; display: flex; align-items: center; gap: 9px; }
+  .foot-logo .logo-mark-svg { height: 24px; }
+  footer span { font-size: 13.5px; color: var(--gray-soft); }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; text-transform: lowercase; }
+  .foot-links a:hover { color: var(--red); }
+
+  @media (max-width: 620px) { .nav-links { display: none; } footer { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo"><svg class="logo-mark-svg" viewBox="0 0 128 96" role="img" aria-label="EC Web Co logo"><path fill="currentColor" d="M14 14h18v68h-18zM14 14h44v17h-44zM14 39.5h36v17h-36zM14 65h44v17h-44z"/><path fill="none" stroke="var(--red)" stroke-width="18" d="M96.8 67.4A27 27 0 1 1 96.8 28.6"/></svg>EC Web Co</a>
+  <div class="nav-links">
+    <a href="/#work">work</a>
+    <a href="/#services">services</a>
+    <a href="/#faq">faq</a>
+    <a href="/#contact">contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://manage.ecwebco.com/" class="btn btn-outline">client portal</a>
+  </div>
+</nav>
+
+<header class="legal-header">
+  <div class="legal-wrap">
+    <div class="legal-kicker">legal</div>
+    <h1>privacy policy</h1>
+    <p class="legal-updated">Effective date: July 7, 2026</p>
+  </div>
+</header>
+
+<main class="legal-body">
+  <p class="intro">EC Web Co ("EC Web Co," "we," "us," or "our") builds and manages websites for small businesses. This Privacy Policy explains what information we collect when you visit <strong>ecwebco.com</strong> or contact us, how we use it, and the choices you have.</p>
+
+  <h2>information we collect</h2>
+  <p>We only collect what we need to respond to you and run our business:</p>
+  <ul>
+    <li><strong>Information you give us.</strong> When you fill out our contact form or email us, we collect your name, business name, email address, and anything you include in your message.</li>
+    <li><strong>Information collected automatically.</strong> Like most websites, our hosting and any analytics tools may record basic technical data such as your browser type, device, approximate location, and the pages you view. This helps us keep the site secure and understand what's useful.</li>
+  </ul>
+
+  <h2>how we use your information</h2>
+  <p>We use the information we collect to:</p>
+  <ul>
+    <li>Respond to your inquiry and provide a quote or proposal;</li>
+    <li>Deliver, maintain, and improve our services and website;</li>
+    <li>Communicate with you about a project or your account; and</li>
+    <li>Meet our legal, security, and record-keeping obligations.</li>
+  </ul>
+  <p>We do <strong>not</strong> sell or rent your personal information, and we don't send marketing emails you didn't ask for.</p>
+
+  <h2>how your information is stored and shared</h2>
+  <p>Contact-form submissions and project information are stored securely with trusted third-party infrastructure providers we use to host our website and database. We share information only when necessary to operate our business, and only with:</p>
+  <ul>
+    <li><strong>Service providers</strong> (for example, hosting, database, and email providers) that process data on our behalf under confidentiality obligations;</li>
+    <li><strong>Authorities or others</strong> when required by law, or to protect our rights, safety, or property.</li>
+  </ul>
+
+  <h2>cookies</h2>
+  <p>Our site uses minimal cookies and similar technologies for essential functionality and, where enabled, basic analytics. You can control or disable cookies in your browser settings; some parts of the site may not work as intended if you do.</p>
+
+  <h2>data retention</h2>
+  <p>We keep your information only as long as needed to respond to you, provide our services, and meet legal or record-keeping requirements. When it's no longer needed, we delete or anonymize it.</p>
+
+  <h2>your choices and rights</h2>
+  <p>You can ask us to access, correct, or delete the personal information we hold about you, or opt out of communications, at any time. Just email <a href="mailto:evan@ecwebco.com">evan@ecwebco.com</a> and we'll take care of it.</p>
+
+  <h2>third-party links</h2>
+  <p>Our website and portfolio may link to sites we don't operate. We're not responsible for the privacy practices of those sites, so please review their policies separately.</p>
+
+  <h2>children's privacy</h2>
+  <p>Our website is intended for business owners and is not directed to children under 13. We do not knowingly collect personal information from children.</p>
+
+  <h2>changes to this policy</h2>
+  <p>We may update this Privacy Policy from time to time. When we do, we'll revise the effective date above. Significant changes will be reflected on this page.</p>
+
+  <h2>contact us</h2>
+  <p>Questions about this policy or your information? Email us at <a href="mailto:evan@ecwebco.com">evan@ecwebco.com</a>.</p>
+</main>
+
+<footer>
+  <div class="foot-logo"><svg class="logo-mark-svg" viewBox="0 0 128 96" role="img" aria-label="EC Web Co logo"><path fill="currentColor" d="M14 14h18v68h-18zM14 14h44v17h-44zM14 39.5h36v17h-36zM14 65h44v17h-44z"/><path fill="none" stroke="var(--red)" stroke-width="18" d="M96.8 67.4A27 27 0 1 1 96.8 28.6"/></svg>EC Web Co</div>
+  <div class="foot-links">
+    <a href="/">home</a>
+    <a href="/#contact">contact</a>
+    <a href="https://manage.ecwebco.com/">portal</a>
+    <a href="/terms">terms</a>
+    <a href="/privacy">privacy</a>
+  </div>
+  <span>© 2026 EC Web Co. All rights reserved.</span>
+</footer>
+
+<script>
+  const navEl = document.getElementById('nav');
+  const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
