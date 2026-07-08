@@ -284,8 +284,26 @@
   .sec-sub a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 
   /* ---------- THE SHORT (manifesto) ---------- */
-  .short .wrap { display: grid; grid-template-columns: 0.5fr 1.5fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
-  .short .label { font-size: 15px; color: var(--red); text-transform: lowercase; font-weight: 600; padding-top: 14px; }
+  .short .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(36px, 5vw, 72px); align-items: center; }
+  .short .label { font-size: 15px; color: var(--red); text-transform: lowercase; font-weight: 600; margin-bottom: 22px; }
+  .short-media { aspect-ratio: 4 / 5; }
+  @media (max-width: 900px){ .short-media { aspect-ratio: 16 / 9; } }
+
+  /* ---------- ABSTRACT MEDIA ---------- */
+  .media-frame { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: 0 34px 80px -46px rgba(0,0,0,.85); }
+  .media-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .band { position: relative; overflow: hidden; padding: clamp(88px, 12vw, 156px) clamp(20px,4vw,56px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .band-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(21,16,12,0.80) 0%, rgba(21,16,12,0.72) 100%), linear-gradient(90deg, rgba(21,16,12,0.9) 0%, rgba(21,16,12,0.3) 70%); }
+  .band-inner { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; }
+  .band-title { font-size: clamp(34px, 5vw, 66px); text-transform: lowercase; line-height: 1.0; letter-spacing: -0.03em; margin: 16px 0 18px; max-width: 20ch; }
+  .band-title .red { color: var(--red); }
+  .band-sub { font-size: clamp(16px,1.5vw,19px); color: var(--gray); max-width: 54ch; line-height: 1.6; }
+
+  .endcta-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .endcta-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .3; }
+  .endcta-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 44%, rgba(21,16,12,0.42) 0%, rgba(21,16,12,0.88) 68%); }
   .short .tagline {
     font-family: 'Wix Madefor Display', sans-serif; font-weight: 800;
     font-size: clamp(32px, 5vw, 70px); line-height: 1.0; letter-spacing: -0.035em; text-transform: lowercase;
@@ -516,10 +534,13 @@
 <!-- THE SHORT -->
 <section class="short">
   <div class="wrap">
-    <div class="label">the short.</div>
-    <div>
+    <div class="short-text">
+      <div class="label">the short.</div>
       <p class="tagline">we love building websites that <span class="red">actually work.</span></p>
       <p class="text">A full-service mix of design, development, SEO, and hosting. Built for small businesses, we turn good ideas into sites that <b>get found and get results</b>, all designed, hosted, and run for you.</p>
+    </div>
+    <div class="short-media media-frame reveal">
+      <img src="assets/abstract-network.jpg" alt="Abstract network visualization" loading="lazy" />
     </div>
   </div>
 </section>
@@ -597,6 +618,17 @@
         </div>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band">
+  <img class="band-img" src="assets/abstract-tunnel.jpg" alt="" aria-hidden="true" loading="lazy" />
+  <div class="band-overlay"></div>
+  <div class="band-inner">
+    <div class="sec-kicker">how we build</div>
+    <h2 class="band-title">modern tech, <span class="red">built to last.</span></h2>
+    <p class="band-sub">Fast, secure, hand-built sites engineered to load quick, rank well, and grow with your business. No bloated templates, no shortcuts.</p>
   </div>
 </section>
 
@@ -765,6 +797,7 @@
 
 <!-- BIG CTA -->
 <section class="endcta">
+  <div class="endcta-bg" aria-hidden="true"><img src="assets/abstract-data.jpg" alt="" loading="lazy" /></div>
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="label">got something to build?</div>
   <h2><a href="#contact">let's create<br />something <span class="red">good.</span></a></h2>
