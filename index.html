@@ -414,9 +414,12 @@
   }
   .foot-logo { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; display: flex; align-items: center; gap: 9px; }
   footer span { font-size: 13.5px; color: var(--gray-soft); }
-  .foot-links { display: flex; gap: 22px; }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
   .foot-links a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; text-transform: lowercase; }
   .foot-links a:hover { color: var(--red); }
+  .foot-legal { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .foot-legal a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; text-transform: lowercase; }
+  .foot-legal a:hover { color: var(--red); }
 
   /* ---------- SCROLL REVEAL ---------- */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
@@ -736,10 +739,12 @@
     <a href="#faq">faq</a>
     <a href="#contact">contact</a>
     <a href="https://manage.ecwebco.com/">portal</a>
+  </div>
+  <div class="foot-legal">
     <a href="/terms">terms</a>
     <a href="/privacy">privacy</a>
+    <span>© 2026 EC Web Co. All rights reserved.</span>
   </div>
-  <span>© 2026 EC Web Co. All rights reserved.</span>
 </footer>
 
 <script>
