@@ -69,9 +69,10 @@
   "@type": "ItemList",
   "name": "EC Web Co Portfolio",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "url": "https://www.tixplorer.com", "name": "Tixplorer" },
-    { "@type": "ListItem", "position": 2, "url": "https://www.ld-roofing.com", "name": "LD Roofing & Exteriors" },
-    { "@type": "ListItem", "position": 3, "url": "https://www.kps-kitchen.com", "name": "KP's Kitchen" }
+    { "@type": "ListItem", "position": 1, "url": "https://www.suite55lounge.com", "name": "Suite 55" },
+    { "@type": "ListItem", "position": 2, "url": "https://www.tixplorer.com", "name": "Tixplorer" },
+    { "@type": "ListItem", "position": 3, "url": "https://www.ld-roofing.com", "name": "LD Roofing & Exteriors" },
+    { "@type": "ListItem", "position": 4, "url": "https://www.kps-kitchen.com", "name": "KP's Kitchen" }
   ]
 }
 </script>
@@ -295,15 +296,23 @@
   .short .text b { color: var(--white); font-weight: 600; }
 
   /* ---------- WORK ---------- */
-  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .work-card {
-    display: flex; gap: 20px; align-items: flex-start;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
     background: var(--surface); border: 1px solid var(--line-soft);
-    border-radius: var(--radius); padding: 24px;
+    border-radius: var(--radius); padding: clamp(26px, 3vw, 42px);
     text-decoration: none; color: var(--white);
-    transition: .28s cubic-bezier(.34,1.56,.64,1);
+    transition: transform .4s cubic-bezier(.2,.7,.3,1), border-color .4s;
   }
-  .work-card:hover { border-color: var(--red); transform: translateY(-6px); }
+  .work-card::before {
+    content: ''; position: absolute; top: -45%; right: -18%;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(251,77,43,0.17) 0%, transparent 68%);
+    opacity: 0; transition: opacity .45s; pointer-events: none;
+  }
+  .work-card:hover { transform: translateY(-6px); border-color: var(--red); }
+  .work-card:hover::before { opacity: 1; }
 
   .peek { border-radius: 11px; overflow: hidden; border: 1px solid var(--line-soft); background: #1A140E; margin-bottom: 18px; }
   .peek-bar { display: flex; align-items: center; gap: 5px; padding: 9px 13px; background: #2A2118; border-bottom: 1px solid var(--line-soft); }
@@ -312,17 +321,20 @@
   .peek-body { aspect-ratio: 16/10; position: relative; overflow: hidden; background: #1A140E; }
   .peek-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #1A140E; }
 
-  .brand-logo { width: 80px; height: 50px; flex: 0 0 auto; object-fit: contain; object-position: left center; }
-  .brand-logo.lg { width: 100px; height: 100px; }
-  .work-info { flex: 1; min-width: 0; }
-  .work-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-  .work-num { font-size: 12px; font-weight: 600; color: var(--red); text-transform: lowercase; }
-  .work-name { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-transform: lowercase; color: var(--white); margin-bottom: 14px; }
-  .go { font-size: 15px; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .22s; flex-shrink: 0; }
+  .work-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(30px, 6vw, 60px); position: relative; z-index: 1; }
+  .work-index { display: inline-flex; align-items: center; font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: .12em; color: var(--gray-soft); transition: color .3s; }
+  .work-card:hover .work-index { color: var(--red); }
+  .work-badge { font-size: 10.5px; font-weight: 700; text-transform: lowercase; letter-spacing: .03em; color: #2a1b0a; background: var(--amber); padding: 4px 10px; border-radius: 100px; margin-left: 12px; }
+  .go { font-size: 16px; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .25s; flex-shrink: 0; }
   .work-card:hover .go { background: var(--red); border-color: var(--red); color: #fff; transform: rotate(45deg); }
-  .work-desc { font-size: 14.5px; color: var(--gray); margin-bottom: 14px; }
-  .work-tags { display: flex; gap: 7px; flex-wrap: wrap; }
-  .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 5px 11px; border-radius: 100px; border: 1px solid var(--line); color: var(--gray); }
+  .work-body { position: relative; z-index: 1; }
+  .work-cat { font-size: 12.5px; font-weight: 600; color: var(--red); text-transform: lowercase; margin-bottom: 12px; }
+  .work-name { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: clamp(30px, 3.7vw, 46px); line-height: 0.98; letter-spacing: -0.03em; text-transform: lowercase; margin-bottom: 16px; }
+  .work-name .dot { color: var(--red); }
+  .work-desc { font-size: 15px; color: var(--gray); margin-bottom: 22px; max-width: 48ch; line-height: 1.6; }
+  .work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--gray); }
+  .work-tag.hot { border-color: rgba(244,169,60,0.55); color: var(--amber); }
 
   /* ---------- SERVICES / WHY ---------- */
   .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
@@ -521,10 +533,30 @@
     </div>
 
     <div class="work-grid">
+      <a href="https://www.suite55lounge.com/" target="_blank" rel="noopener" class="work-card reveal">
+        <div class="work-top">
+          <span class="work-index">01<span class="work-badge">newest</span></span>
+          <span class="go">↗</span>
+        </div>
+        <div class="work-body">
+          <div class="work-cat">restaurant &amp; lounge</div>
+          <h3 class="work-name">suite 55<span class="dot">.</span></h3>
+          <p class="work-desc">An upscale Cleveland restaurant and lounge, with a live, interactive floor plan for booking tables and bottle service in real time.</p>
+          <div class="work-tags">
+            <span class="work-tag hot">interactive booking</span>
+            <span class="work-tag">live floor plan</span>
+          </div>
+        </div>
+      </a>
+
       <a href="https://www.tixplorer.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <img class="brand-logo" src="assets/brand-tixplorer.png" alt="Tixplorer logo" loading="lazy" />
-        <div class="work-info">
-          <div class="work-top"><span class="work-num">tixplorer</span><span class="go">↗</span></div>
+        <div class="work-top">
+          <span class="work-index">02</span>
+          <span class="go">↗</span>
+        </div>
+        <div class="work-body">
+          <div class="work-cat">web platform</div>
+          <h3 class="work-name">tixplorer<span class="dot">.</span></h3>
           <p class="work-desc">A ticket-comparison engine searching every major marketplace at once, with all-in pricing and trending events.</p>
           <div class="work-tags">
             <span class="work-tag">web app</span>
@@ -534,9 +566,13 @@
       </a>
 
       <a href="https://www.ld-roofing.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <img class="brand-logo" src="assets/brand-ld-roofing.png" alt="LD Roofing & Exteriors logo" loading="lazy" />
-        <div class="work-info">
-          <div class="work-top"><span class="work-num">ld roofing &amp; exteriors</span><span class="go">↗</span></div>
+        <div class="work-top">
+          <span class="work-index">03</span>
+          <span class="go">↗</span>
+        </div>
+        <div class="work-body">
+          <div class="work-cat">local business</div>
+          <h3 class="work-name">ld roofing<span class="dot">.</span></h3>
           <p class="work-desc">A lead-generating site for a BBB A+ rated contractor in Houston and Dallas, built to turn searches into inspection calls.</p>
           <div class="work-tags">
             <span class="work-tag">lead gen</span>
@@ -546,9 +582,13 @@
       </a>
 
       <a href="https://www.kps-kitchen.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <img class="brand-logo lg" src="assets/brand-kps-kitchen.png" alt="KP's Kitchen logo" loading="lazy" />
-        <div class="work-info">
-          <div class="work-top"><span class="work-num">kp's kitchen</span><span class="go">↗</span></div>
+        <div class="work-top">
+          <span class="work-index">04</span>
+          <span class="go">↗</span>
+        </div>
+        <div class="work-body">
+          <div class="work-cat">restaurant</div>
+          <h3 class="work-name">kp's kitchen<span class="dot">.</span></h3>
           <p class="work-desc">A warm, appetite-first site for a Spring Valley restaurant, with menus, hours, and reservations a tap away.</p>
           <div class="work-tags">
             <span class="work-tag">restaurant</span>
