@@ -47,16 +47,26 @@
   "image": "https://www.ecwebco.com/assets/favicon.png",
   "areaServed": ["Houston TX", "Dallas TX", "Texas", "United States"],
   "serviceType": ["Web Design", "Web Development", "SEO", "Website Hosting", "Website Management"],
+  "priceRange": "$199+/month",
   "makesOffer": [
     {
       "@type": "Offer",
-      "name": "Managed Website Plan",
-      "description": "Custom website design, SEO, hosting, maintenance, and a manager portal, managed for you. Quoted per project."
+      "name": "Essential",
+      "price": "199",
+      "priceCurrency": "USD",
+      "description": "Custom website, hosting, security, maintenance, and unlimited updates. Billed monthly."
     },
     {
       "@type": "Offer",
-      "name": "Custom Project",
-      "description": "Custom web apps and platforms, quoted per project."
+      "name": "Growth",
+      "price": "399",
+      "priceCurrency": "USD",
+      "description": "Everything in Essential plus local SEO, Google Business Profile optimization, Apple Business Connect, Bing Places, search indexing, analytics, and ongoing website optimization. Billed monthly."
+    },
+    {
+      "@type": "Offer",
+      "name": "Enterprise",
+      "description": "Everything in Growth with a custom solution: multiple locations, custom integrations, booking or ordering systems, AI automations, loyalty programs, custom development, ongoing consulting, and priority support. Contact for a quote."
     }
   ]
 }
@@ -98,7 +108,7 @@
     { "@type": "Question", "name": "What does 'unlimited change requests' actually mean?", "acceptedAnswer": { "@type": "Answer", "text": "Exactly what it sounds like. New menu, updated hours, swapped photos, a new page, different copy: send it through your portal and we handle it, most requests same-day. No monthly cap, no per-change fee." } },
     { "@type": "Question", "name": "Can you handle more than one site?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. A second location, a second brand, or another business: we'll build and manage each one with its own domain and its own branding, all from a single portal. Extra sites are quoted as a simple add-on to your project." } },
     { "@type": "Question", "name": "How long until my site is live?", "acceptedAnswer": { "@type": "Answer", "text": "Typically days, not months. After our first conversation we build a preview for you to review. Once you approve it, we point your domain and you're live, usually within the same week for standard sites." } },
-    { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Every project is a little different, so we quote each one individually based on what you actually need. Tell us about your business, we'll scope it together, and you'll get a clear, fixed quote before any work starts. No surprises." } },
+    { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "We believe in price transparency, so it's all up front. Essential is $199/month for a complete managed website. Growth is $399/month and adds full local SEO, business listings, and analytics. Enterprise is a custom quote for bigger builds and integrations. No setup fees and no surprises." } },
     { "@type": "Question", "name": "What happens if I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "You can cancel anytime; there's no long-term contract. We'll work with you on an off-boarding plan, including transferring your domain if you own it." } }
   ]
 }
@@ -363,6 +373,32 @@
   .why-item h3 { font-size: 26px; font-weight: 800; margin-bottom: 12px; text-transform: lowercase; }
   .why-item p { font-size: 15px; color: var(--gray); line-height: 1.6; }
 
+  /* ---------- PRICING ---------- */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 900px){ .pricing-grid { grid-template-columns: 1fr; } }
+  .price-card {
+    position: relative; display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-radius: calc(var(--radius) + 4px); padding: clamp(26px, 3vw, 38px);
+    transition: border-color .3s, transform .3s;
+  }
+  .price-card:hover { border-color: var(--line); transform: translateY(-4px); }
+  .price-card.featured { border: 1.5px solid var(--red); }
+  .price-card.featured::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(circle at 50% 0%, rgba(251,77,43,0.12), transparent 62%); pointer-events: none; }
+  .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--amber); color: #2a1b0a; font-size: 11px; font-weight: 700; text-transform: lowercase; letter-spacing: .04em; padding: 5px 14px; border-radius: 100px; white-space: nowrap; z-index: 1; }
+  .price-name { font-size: 13px; font-weight: 700; text-transform: lowercase; letter-spacing: .05em; color: var(--gray); margin-bottom: 16px; position: relative; }
+  .price-name .star { color: var(--amber); }
+  .price-amount { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: clamp(40px, 4.4vw, 56px); line-height: 1; letter-spacing: -0.03em; color: var(--white); position: relative; }
+  .price-amount span { font-family: 'Wix Madefor Text', sans-serif; font-size: 16px; font-weight: 600; color: var(--gray); letter-spacing: 0; }
+  .price-amount.custom { font-size: clamp(32px, 3.6vw, 44px); }
+  .price-tagline { margin: 16px 0 20px; font-size: 15px; color: var(--gray); line-height: 1.55; position: relative; }
+  .price-ideal { font-size: 12.5px; font-weight: 600; text-transform: lowercase; letter-spacing: .03em; color: var(--red); margin-bottom: 12px; position: relative; }
+  .price-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; position: relative; }
+  .price-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 14.5px; color: var(--white); }
+  .price-list .tick { flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; background: rgba(251,77,43,0.16); color: var(--red); margin-top: 1px; }
+  .price-card.featured .price-list .tick { background: var(--amber); color: #2a1b0a; }
+  .price-cta { margin-top: auto; justify-content: center; position: relative; }
+
   /* ---------- PORTAL ---------- */
   .portal-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 5vw, 80px); align-items: center; max-width: 1240px; margin: 0 auto; }
   .portal-peek { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 90px -40px rgba(0,0,0,.9); background: #1A140E; display: block; text-decoration: none; }
@@ -486,6 +522,7 @@
   <div class="nav-links">
     <a href="#work">work</a>
     <a href="#services">services</a>
+    <a href="#pricing">pricing</a>
     <a href="#faq">faq</a>
     <a href="#contact">contact</a>
   </div>
@@ -674,6 +711,68 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">price transparency</div>
+      <h2 class="sec-title">what it costs, <span class="red">up front.</span></h2>
+      <p class="sec-sub">No hidden fees, no vague quotes. Pick a plan and know exactly what you pay each month.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name">essential</div>
+        <div class="price-amount">$199<span>/month</span></div>
+        <p class="price-tagline">A complete, professionally managed website, done right.</p>
+        <ul class="price-list">
+          <li><span class="tick">✓</span>Custom website</li>
+          <li><span class="tick">✓</span>Hosting</li>
+          <li><span class="tick">✓</span>Security</li>
+          <li><span class="tick">✓</span>Maintenance</li>
+          <li><span class="tick">✓</span>Unlimited updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline price-cta">get started</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-badge">most popular</div>
+        <div class="price-name"><span class="star">★</span> growth</div>
+        <div class="price-amount">$399<span>/month</span></div>
+        <p class="price-tagline">Everything in Essential, plus the tools to get found.</p>
+        <ul class="price-list">
+          <li><span class="tick">✓</span>Local SEO</li>
+          <li><span class="tick">✓</span>Google Business Profile optimization</li>
+          <li><span class="tick">✓</span>Apple Business Connect</li>
+          <li><span class="tick">✓</span>Bing Places</li>
+          <li><span class="tick">✓</span>Search indexing</li>
+          <li><span class="tick">✓</span>Analytics</li>
+          <li><span class="tick">✓</span>Ongoing website optimization</li>
+        </ul>
+        <a href="#contact" class="btn btn-red price-cta">get started</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-name">enterprise</div>
+        <div class="price-amount custom">let's talk</div>
+        <p class="price-tagline">Everything in Growth, with a custom solution tailored to your business.</p>
+        <p class="price-ideal">ideal for businesses needing:</p>
+        <ul class="price-list">
+          <li><span class="tick">✓</span>Multiple locations</li>
+          <li><span class="tick">✓</span>Custom integrations</li>
+          <li><span class="tick">✓</span>Booking or ordering systems</li>
+          <li><span class="tick">✓</span>AI automations</li>
+          <li><span class="tick">✓</span>Loyalty programs</li>
+          <li><span class="tick">✓</span>Custom development</li>
+          <li><span class="tick">✓</span>Ongoing consulting</li>
+          <li><span class="tick">✓</span>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline price-cta">contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CLIENT PORTAL -->
 <section class="portal">
   <div class="portal-inner">
@@ -738,7 +837,7 @@
       </details>
       <details class="faq-item">
         <summary>how much does it cost?</summary>
-        <div class="faq-a">Every project is a little different, so we quote each one individually based on what you actually need. Tell us about your business, we'll scope it together, and you'll get a clear, fixed quote before any work starts. No surprises.</div>
+        <div class="faq-a">We believe in price transparency, so it's all up front. Essential is $199/month for a complete managed website. Growth is $399/month and adds full local SEO, business listings, and analytics. Enterprise is a custom quote for bigger builds and integrations. No setup fees and no surprises. See <a href="#pricing">pricing</a> for the full breakdown.</div>
       </details>
       <details class="faq-item">
         <summary>what happens if I cancel?</summary>
@@ -809,6 +908,7 @@
   <div class="foot-links">
     <a href="#work">work</a>
     <a href="#services">services</a>
+    <a href="#pricing">pricing</a>
     <a href="#faq">faq</a>
     <a href="#contact">contact</a>
     <a href="https://manage.ecwebco.com/">portal</a>
