@@ -364,6 +364,24 @@
   .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--gray); }
   .work-tag.hot { border-color: rgba(244,169,60,0.55); color: var(--amber); }
 
+  /* ---------- RESULTS ---------- */
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .result-card {
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-radius: var(--radius); padding: clamp(22px, 2.6vw, 34px);
+    transition: border-color .3s, transform .3s;
+  }
+  .result-card:hover { transform: translateY(-4px); border-color: var(--line); }
+  .result-stat {
+    font-family: 'Wix Madefor Display', sans-serif; font-weight: 800;
+    font-size: clamp(30px, 3.6vw, 46px); letter-spacing: -0.03em; line-height: 1; text-transform: lowercase;
+  }
+  .result-stat .red { color: var(--red); }
+  .result-label { font-size: 15px; color: var(--gray); margin: 12px 0 22px; line-height: 1.6; max-width: 52ch; }
+  .result-shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line-soft); background: #fff; }
+  .result-shot img { display: block; width: 100%; height: auto; }
+  @media (max-width: 900px){ .results-grid { grid-template-columns: 1fr; } }
+
   /* ---------- SERVICES / WHY ---------- */
   .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
   .why-item { padding: 34px 32px 38px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); transition: background .25s; }
@@ -521,6 +539,7 @@
   <a href="#" class="nav-logo"><svg class="logo-mark-svg" viewBox="0 0 128 96" role="img" aria-label="EC Web Co logo"><path fill="currentColor" d="M14 14h18v68h-18zM14 14h44v17h-44zM14 39.5h36v17h-36zM14 65h44v17h-44z"/><path fill="none" stroke="var(--red)" stroke-width="18" d="M96.8 67.4A27 27 0 1 1 96.8 28.6"/></svg>EC Web Co</a>
   <div class="nav-links">
     <a href="#work">work</a>
+    <a href="#results">results</a>
     <a href="#services">services</a>
     <a href="#pricing">pricing</a>
     <a href="#faq">faq</a>
@@ -577,7 +596,7 @@
       <p class="text">Design, development, SEO, and hosting, all in one place. We build the site, host it, and keep it running, so you end up with a website that <b>actually brings in business</b> and one less thing to manage.</p>
     </div>
     <div class="short-media media-frame reveal">
-      <img src="assets/abstract-network.jpg" alt="Abstract network visualization" loading="lazy" />
+      <img src="assets/work-suite55.jpg" alt="The Suite 55 website, designed and built by EC Web Co" loading="lazy" />
     </div>
   </div>
 </section>
@@ -588,10 +607,15 @@
     <div class="sec-head">
       <div class="sec-kicker">selected work</div>
       <h2 class="sec-title">work we've <span class="red">shipped.</span></h2>
+      <p class="sec-sub">These aren't mockups. Every one of these is a real site we built for a real business, live right now. Go click around.</p>
     </div>
 
     <div class="work-grid">
       <a href="https://www.suite55lounge.com/" target="_blank" rel="noopener" class="work-card reveal">
+        <div class="peek">
+          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">suite55lounge.com</span></div>
+          <div class="peek-body"><img class="peek-img" src="assets/work-suite55.jpg" alt="The Suite 55 website homepage" loading="lazy" /></div>
+        </div>
         <div class="work-top">
           <span class="work-index">01<span class="work-badge">newest</span></span>
           <span class="go">↗</span>
@@ -608,6 +632,10 @@
       </a>
 
       <a href="https://www.tixplorer.com/" target="_blank" rel="noopener" class="work-card reveal">
+        <div class="peek">
+          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">tixplorer.com</span></div>
+          <div class="peek-body"><img class="peek-img" src="assets/work-tixplorer.jpg" alt="The Tixplorer ticket search homepage" loading="lazy" /></div>
+        </div>
         <div class="work-top">
           <span class="work-index">02</span>
           <span class="go">↗</span>
@@ -624,6 +652,10 @@
       </a>
 
       <a href="https://www.ld-roofing.com/" target="_blank" rel="noopener" class="work-card reveal">
+        <div class="peek">
+          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">ld-roofing.com</span></div>
+          <div class="peek-body"><img class="peek-img" src="assets/work-ldroofing.jpg" alt="The LD Roofing & Exteriors website homepage" loading="lazy" /></div>
+        </div>
         <div class="work-top">
           <span class="work-index">03</span>
           <span class="go">↗</span>
@@ -640,6 +672,10 @@
       </a>
 
       <a href="https://www.kps-kitchen.com/" target="_blank" rel="noopener" class="work-card reveal">
+        <div class="peek">
+          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">kps-kitchen.com</span></div>
+          <div class="peek-body"><img class="peek-img" src="assets/work-kps.jpg" alt="The KP's Kitchen website homepage" loading="lazy" /></div>
+        </div>
         <div class="work-top">
           <span class="work-index">04</span>
           <span class="go">↗</span>
@@ -658,9 +694,32 @@
   </div>
 </section>
 
+<!-- RESULTS -->
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">real results</div>
+      <h2 class="sec-title">we get brands <span class="red">seen.</span></h2>
+      <p class="sec-sub">These are real Search Console charts from client sites we run, not stock graphics. When we say SEO is included, this is what it looks like: your business showing up in thousands of searches from people nearby.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card reveal">
+        <div class="result-stat">132,000 <span class="red">impressions.</span></div>
+        <p class="result-label">One client's site appeared in 132K Google searches in the last 28 days alone.</p>
+        <div class="result-shot"><img src="assets/seo-impressions-28d.png" alt="Google Search Console chart showing 132K impressions and 197 clicks over 28 days" loading="lazy" /></div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-stat">0 → 2,000+ <span class="red">a day.</span></div>
+        <p class="result-label">Another client went from barely visible on Google to thousands of impressions a day, about a month after we took over.</p>
+        <div class="result-shot"><img src="assets/seo-impressions-3mo.png" alt="Google Search Console chart showing impressions climbing from near zero to over 2,000 per day across three months" loading="lazy" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BAND -->
 <section class="band">
-  <img class="band-img" src="assets/abstract-tunnel.jpg" alt="" aria-hidden="true" loading="lazy" />
+  <img class="band-img" src="assets/work-ldroofing.jpg" alt="" aria-hidden="true" loading="lazy" />
   <div class="band-overlay"></div>
   <div class="band-inner">
     <div class="sec-kicker">how we build</div>
@@ -896,7 +955,7 @@
 
 <!-- BIG CTA -->
 <section class="endcta">
-  <div class="endcta-bg" aria-hidden="true"><img src="assets/abstract-data.jpg" alt="" loading="lazy" /></div>
+  <div class="endcta-bg" aria-hidden="true"><img src="assets/work-tixplorer.jpg" alt="" loading="lazy" /></div>
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="label">got something to build?</div>
   <h2><a href="#contact">let's create<br />something <span class="red">good.</span></a></h2>
@@ -907,6 +966,7 @@
   <div class="foot-logo"><svg class="logo-mark-svg" viewBox="0 0 128 96" role="img" aria-label="EC Web Co logo"><path fill="currentColor" d="M14 14h18v68h-18zM14 14h44v17h-44zM14 39.5h36v17h-36zM14 65h44v17h-44z"/><path fill="none" stroke="var(--red)" stroke-width="18" d="M96.8 67.4A27 27 0 1 1 96.8 28.6"/></svg>EC Web Co</div>
   <div class="foot-links">
     <a href="#work">work</a>
+    <a href="#results">results</a>
     <a href="#services">services</a>
     <a href="#pricing">pricing</a>
     <a href="#faq">faq</a>
