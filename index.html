@@ -79,10 +79,11 @@
   "@type": "ItemList",
   "name": "EC Web Co Portfolio",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "url": "https://www.suite55lounge.com", "name": "Suite 55" },
-    { "@type": "ListItem", "position": 2, "url": "https://www.tixplorer.com", "name": "Tixplorer" },
-    { "@type": "ListItem", "position": 3, "url": "https://www.ld-roofing.com", "name": "LD Roofing & Exteriors" },
-    { "@type": "ListItem", "position": 4, "url": "https://www.kps-kitchen.com", "name": "KP's Kitchen" }
+    { "@type": "ListItem", "position": 1, "url": "https://www.holmessmokehouse.com", "name": "Holmes Smokehouse" },
+    { "@type": "ListItem", "position": 2, "url": "https://www.suite55lounge.com", "name": "Suite 55" },
+    { "@type": "ListItem", "position": 3, "url": "https://www.tixplorer.com", "name": "Tixplorer" },
+    { "@type": "ListItem", "position": 4, "url": "https://www.ld-roofing.com", "name": "LD Roofing & Exteriors" },
+    { "@type": "ListItem", "position": 5, "url": "https://www.kps-kitchen.com", "name": "KP's Kitchen" }
   ]
 }
 </script>
@@ -363,6 +364,9 @@
   .work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
   .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--gray); }
   .work-tag.hot { border-color: rgba(244,169,60,0.55); color: var(--amber); }
+  .work-card.wide { grid-column: 1 / -1; }
+  .work-card.wide .peek-body { aspect-ratio: 16/6; }
+  @media (max-width: 920px){ .work-card.wide .peek-body { aspect-ratio: 16/10; } }
 
   /* ---------- RESULTS ---------- */
   .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -611,13 +615,33 @@
     </div>
 
     <div class="work-grid">
+      <a href="https://www.holmessmokehouse.com/" target="_blank" rel="noopener" class="work-card wide reveal">
+        <div class="peek">
+          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">holmessmokehouse.com</span></div>
+          <div class="peek-body"><img class="peek-img" src="assets/work-holmes.jpg" alt="The Holmes Smokehouse website homepage" loading="lazy" /></div>
+        </div>
+        <div class="work-top">
+          <span class="work-index">01<span class="work-badge">newest</span></span>
+          <span class="go">↗</span>
+        </div>
+        <div class="work-body">
+          <div class="work-cat">food brand</div>
+          <h3 class="work-name">holmes smokehouse<span class="dot">.</span></h3>
+          <p class="work-desc">A top-to-bottom refresh for a Texas smokehouse brand, bringing the heritage of its packaging to the web across the whole site.</p>
+          <div class="work-tags">
+            <span class="work-tag hot">brand refresh</span>
+            <span class="work-tag">cpg</span>
+          </div>
+        </div>
+      </a>
+
       <a href="https://www.suite55lounge.com/" target="_blank" rel="noopener" class="work-card reveal">
         <div class="peek">
           <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">suite55lounge.com</span></div>
           <div class="peek-body"><img class="peek-img" src="assets/work-suite55.jpg" alt="The Suite 55 website homepage" loading="lazy" /></div>
         </div>
         <div class="work-top">
-          <span class="work-index">01<span class="work-badge">newest</span></span>
+          <span class="work-index">02</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
@@ -637,7 +661,7 @@
           <div class="peek-body"><img class="peek-img" src="assets/work-tixplorer.jpg" alt="The Tixplorer ticket search homepage" loading="lazy" /></div>
         </div>
         <div class="work-top">
-          <span class="work-index">02</span>
+          <span class="work-index">03</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
@@ -657,7 +681,7 @@
           <div class="peek-body"><img class="peek-img" src="assets/work-ldroofing.jpg" alt="The LD Roofing & Exteriors website homepage" loading="lazy" /></div>
         </div>
         <div class="work-top">
-          <span class="work-index">03</span>
+          <span class="work-index">04</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
@@ -677,7 +701,7 @@
           <div class="peek-body"><img class="peek-img" src="assets/work-kps.jpg" alt="The KP's Kitchen website homepage" loading="lazy" /></div>
         </div>
         <div class="work-top">
-          <span class="work-index">04</span>
+          <span class="work-index">05</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
