@@ -325,48 +325,67 @@
   .short .text b { color: var(--white); font-weight: 600; }
 
   /* ---------- WORK ---------- */
-  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .work-card {
     position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    background: var(--surface); border: 1px solid var(--line-soft);
-    border-radius: var(--radius); padding: clamp(26px, 3vw, 42px);
-    text-decoration: none; color: var(--white);
+    display: block; grid-column: span 1; aspect-ratio: 3/3.6;
+    border-radius: var(--radius); border: 1px solid var(--line-soft);
+    text-decoration: none; color: var(--white); background: #1A140E;
     transition: transform .4s cubic-bezier(.2,.7,.3,1), border-color .4s;
   }
-  .work-card::before {
-    content: ''; position: absolute; top: -45%; right: -18%;
-    width: 360px; height: 360px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(251,77,43,0.17) 0%, transparent 68%);
-    opacity: 0; transition: opacity .45s; pointer-events: none;
-  }
+  .work-card.wide { grid-column: span 2; aspect-ratio: 2.05/1.2; }
+  @media (max-width: 920px){ .work-card.wide { aspect-ratio: 16/11; } }
   .work-card:hover { transform: translateY(-6px); border-color: var(--red); }
-  .work-card:hover::before { opacity: 1; }
 
-  .peek { border-radius: 11px; overflow: hidden; border: 1px solid var(--line-soft); background: #1A140E; margin-bottom: 18px; }
-  .peek-bar { display: flex; align-items: center; gap: 5px; padding: 9px 13px; background: #2A2118; border-bottom: 1px solid var(--line-soft); }
-  .peek-dot { width: 8px; height: 8px; border-radius: 50%; background: #4A3C2E; }
-  .peek-url { margin-left: 6px; font-size: 11px; color: var(--gray); background: #1A140E; border-radius: 100px; padding: 3px 12px; border: 1px solid var(--line-soft); flex: 1; max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .peek-body { aspect-ratio: 16/10; position: relative; overflow: hidden; background: #1A140E; }
-  .peek-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #1A140E; }
+  .work-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: top center; transition: transform .6s cubic-bezier(.2,.7,.3,1);
+  }
+  .work-card:hover .work-img { transform: scale(1.06); }
 
-  .work-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(30px, 6vw, 60px); position: relative; z-index: 1; }
-  .work-index { display: inline-flex; align-items: center; font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: .12em; color: var(--gray-soft); transition: color .3s; }
+  .work-scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(21,16,12,.72) 0%, rgba(21,16,12,.18) 18%, rgba(21,16,12,0) 32%),
+      linear-gradient(0deg, rgba(21,16,12,.98) 0%, rgba(21,16,12,.95) 42%, rgba(21,16,12,.78) 63%, rgba(21,16,12,.32) 83%, rgba(21,16,12,0) 97%);
+  }
+  .work-scrim::after {
+    content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .4s;
+    background: linear-gradient(0deg, rgba(21,16,12,.6) 0%, rgba(21,16,12,.3) 45%, rgba(21,16,12,.1) 100%);
+  }
+  .work-card:hover .work-scrim::after { opacity: 1; }
+
+  .work-top { position: absolute; top: 0; left: 0; right: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: clamp(16px, 2vw, 24px); }
+  .work-index { display: inline-flex; align-items: center; font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: .12em; color: var(--white); padding: 6px 8px 6px 13px; border-radius: 100px; border: 1px solid rgba(247,237,222,0.22); background: rgba(21,16,12,.5); backdrop-filter: blur(6px); transition: color .3s; }
+  .work-index:not(:has(.work-badge)) { padding: 6px 13px; }
   .work-card:hover .work-index { color: var(--red); }
-  .work-badge { font-size: 10.5px; font-weight: 700; text-transform: lowercase; letter-spacing: .03em; color: #2a1b0a; background: var(--amber); padding: 4px 10px; border-radius: 100px; margin-left: 12px; }
-  .go { font-size: 16px; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; transition: .25s; flex-shrink: 0; }
+  .work-badge { font-size: 10.5px; font-weight: 700; text-transform: lowercase; letter-spacing: .03em; color: #2a1b0a; background: var(--amber); padding: 4px 10px; border-radius: 100px; margin-left: 10px; }
+  .go { font-size: 16px; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(247,237,222,0.35); background: rgba(21,16,12,.35); backdrop-filter: blur(6px); display: inline-flex; align-items: center; justify-content: center; transition: .25s; flex-shrink: 0; }
   .work-card:hover .go { background: var(--red); border-color: var(--red); color: #fff; transform: rotate(45deg); }
-  .work-body { position: relative; z-index: 1; }
-  .work-cat { font-size: 12.5px; font-weight: 600; color: var(--red); text-transform: lowercase; margin-bottom: 12px; }
-  .work-name { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: clamp(30px, 3.7vw, 46px); line-height: 0.98; letter-spacing: -0.03em; text-transform: lowercase; margin-bottom: 16px; }
+
+  .work-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: clamp(18px, 2.4vw, 30px); }
+  .work-url { font-size: 11px; color: var(--gray); background: rgba(21,16,12,.55); backdrop-filter: blur(6px); border-radius: 100px; padding: 4px 12px; border: 1px solid var(--line-soft); display: inline-block; margin-bottom: 12px; }
+  .work-cat { font-size: 12.5px; font-weight: 600; color: var(--red); text-transform: lowercase; margin-bottom: 10px; }
+  .work-name { font-family: 'Wix Madefor Display', sans-serif; font-weight: 800; font-size: clamp(24px, 2.4vw, 34px); line-height: 0.98; letter-spacing: -0.03em; text-transform: lowercase; margin-bottom: 10px; }
+  .work-card.wide .work-name { font-size: clamp(30px, 3.7vw, 46px); }
   .work-name .dot { color: var(--red); }
-  .work-desc { font-size: 15px; color: var(--gray); margin-bottom: 22px; max-width: 48ch; line-height: 1.6; }
+  .work-desc { font-size: 14.5px; color: var(--gray); max-width: 42ch; line-height: 1.55; margin-bottom: 16px; }
+  /* on pointer devices the small cards hold the description back until hover */
+  @media (hover: hover) and (min-width: 641px) {
+    .work-card:not(.wide) .work-desc {
+      max-height: 0; opacity: 0; overflow: hidden; margin-bottom: 0;
+      transition: max-height .4s ease, opacity .3s ease, margin .4s ease;
+    }
+    .work-card:not(.wide):hover .work-desc { max-height: 220px; opacity: 1; margin-bottom: 16px; }
+    .work-card:not(.wide) .work-scrim { background-image:
+      linear-gradient(180deg, rgba(21,16,12,.72) 0%, rgba(21,16,12,.18) 20%, rgba(21,16,12,0) 34%),
+      linear-gradient(0deg, rgba(21,16,12,.97) 0%, rgba(21,16,12,.93) 26%, rgba(21,16,12,.7) 46%, rgba(21,16,12,.28) 66%, rgba(21,16,12,0) 84%); }
+  }
   .work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--gray); }
+  .work-tag { font-size: 11px; font-weight: 600; text-transform: lowercase; padding: 6px 12px; border-radius: 100px; border: 1px solid rgba(247,237,222,0.25); background: rgba(21,16,12,.4); backdrop-filter: blur(6px); color: var(--white); }
   .work-tag.hot { border-color: rgba(244,169,60,0.55); color: var(--amber); }
-  .work-card.wide { grid-column: 1 / -1; }
-  .work-card.wide .peek-body { aspect-ratio: 16/6; }
-  @media (max-width: 920px){ .work-card.wide .peek-body { aspect-ratio: 16/10; } }
+  @media (max-width: 920px){ .work-grid { grid-template-columns: 1fr 1fr; } .work-card { aspect-ratio: 4/5; } .work-card.wide { grid-column: 1 / -1; } }
+  @media (max-width: 640px){ .work-grid { grid-template-columns: 1fr; } .work-card, .work-card.wide { grid-column: 1 / -1; aspect-ratio: 4/5; } }
 
   /* ---------- RESULTS ---------- */
   .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -422,6 +441,10 @@
   .price-cta { margin-top: auto; justify-content: center; position: relative; }
 
   /* ---------- PORTAL ---------- */
+  .peek-bar { display: flex; align-items: center; gap: 5px; padding: 9px 13px; background: #2A2118; border-bottom: 1px solid var(--line-soft); }
+  .peek-dot { width: 8px; height: 8px; border-radius: 50%; background: #4A3C2E; }
+  .peek-url { margin-left: 6px; font-size: 11px; color: var(--gray); background: #1A140E; border-radius: 100px; padding: 3px 12px; border: 1px solid var(--line-soft); flex: 1; max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .peek-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #1A140E; }
   .portal-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 5vw, 80px); align-items: center; max-width: 1240px; margin: 0 auto; }
   .portal-peek { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 90px -40px rgba(0,0,0,.9); background: #1A140E; display: block; text-decoration: none; }
   .portal-peek .peek-bar { background: #2A2118; }
@@ -518,7 +541,6 @@
   /* ---------- MOBILE ---------- */
   @media (max-width: 920px) {
     .nav-links { display: none; }
-    .work-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .why-item { border-right: none; }
     .portal-inner, .faq-inner, .contact-inner, .short .wrap { grid-template-columns: 1fr; }
@@ -616,15 +638,14 @@
 
     <div class="work-grid">
       <a href="https://www.holmessmokehouse.com/" target="_blank" rel="noopener" class="work-card wide reveal">
-        <div class="peek">
-          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">holmessmokehouse.com</span></div>
-          <div class="peek-body"><img class="peek-img" src="assets/work-holmes.jpg" alt="The Holmes Smokehouse website homepage" loading="lazy" /></div>
-        </div>
+        <img class="work-img" src="assets/work-holmes.jpg" alt="The Holmes Smokehouse website homepage" loading="lazy" />
+        <div class="work-scrim"></div>
         <div class="work-top">
           <span class="work-index">01<span class="work-badge">newest</span></span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
+          <div class="work-url">holmessmokehouse.com</div>
           <div class="work-cat">food brand</div>
           <h3 class="work-name">holmes smokehouse<span class="dot">.</span></h3>
           <p class="work-desc">A top-to-bottom refresh for a Texas smokehouse brand, bringing the heritage of its packaging to the web across the whole site.</p>
@@ -636,15 +657,14 @@
       </a>
 
       <a href="https://www.suite55lounge.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">suite55lounge.com</span></div>
-          <div class="peek-body"><img class="peek-img" src="assets/work-suite55.jpg" alt="The Suite 55 website homepage" loading="lazy" /></div>
-        </div>
+        <img class="work-img" src="assets/work-suite55.jpg" alt="The Suite 55 website homepage" loading="lazy" />
+        <div class="work-scrim"></div>
         <div class="work-top">
           <span class="work-index">02</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
+          <div class="work-url">suite55lounge.com</div>
           <div class="work-cat">restaurant &amp; lounge</div>
           <h3 class="work-name">suite 55<span class="dot">.</span></h3>
           <p class="work-desc">An upscale Cleveland restaurant and lounge, with a live, interactive floor plan for booking tables and bottle service in real time.</p>
@@ -656,15 +676,14 @@
       </a>
 
       <a href="https://www.tixplorer.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">tixplorer.com</span></div>
-          <div class="peek-body"><img class="peek-img" src="assets/work-tixplorer.jpg" alt="The Tixplorer ticket search homepage" loading="lazy" /></div>
-        </div>
+        <img class="work-img" src="assets/work-tixplorer.jpg" alt="The Tixplorer ticket search homepage" loading="lazy" />
+        <div class="work-scrim"></div>
         <div class="work-top">
           <span class="work-index">03</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
+          <div class="work-url">tixplorer.com</div>
           <div class="work-cat">web platform</div>
           <h3 class="work-name">tixplorer<span class="dot">.</span></h3>
           <p class="work-desc">A ticket-comparison engine searching every major marketplace at once, with all-in pricing and trending events.</p>
@@ -676,15 +695,14 @@
       </a>
 
       <a href="https://www.ld-roofing.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">ld-roofing.com</span></div>
-          <div class="peek-body"><img class="peek-img" src="assets/work-ldroofing.jpg" alt="The LD Roofing & Exteriors website homepage" loading="lazy" /></div>
-        </div>
+        <img class="work-img" src="assets/work-ldroofing.jpg" alt="The LD Roofing & Exteriors website homepage" loading="lazy" />
+        <div class="work-scrim"></div>
         <div class="work-top">
           <span class="work-index">04</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
+          <div class="work-url">ld-roofing.com</div>
           <div class="work-cat">local business</div>
           <h3 class="work-name">ld roofing<span class="dot">.</span></h3>
           <p class="work-desc">A lead-generating site for a BBB A+ rated contractor in Houston and Dallas, built to turn searches into inspection calls.</p>
@@ -696,15 +714,14 @@
       </a>
 
       <a href="https://www.kps-kitchen.com/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="peek">
-          <div class="peek-bar"><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-dot"></span><span class="peek-url">kps-kitchen.com</span></div>
-          <div class="peek-body"><img class="peek-img" src="assets/work-kps.jpg" alt="The KP's Kitchen website homepage" loading="lazy" /></div>
-        </div>
+        <img class="work-img" src="assets/work-kps.jpg" alt="The KP's Kitchen website homepage" loading="lazy" />
+        <div class="work-scrim"></div>
         <div class="work-top">
           <span class="work-index">05</span>
           <span class="go">↗</span>
         </div>
         <div class="work-body">
+          <div class="work-url">kps-kitchen.com</div>
           <div class="work-cat">restaurant</div>
           <h3 class="work-name">kp's kitchen<span class="dot">.</span></h3>
           <p class="work-desc">A warm, appetite-first site for a Spring Valley restaurant, with menus, hours, and reservations a tap away.</p>
